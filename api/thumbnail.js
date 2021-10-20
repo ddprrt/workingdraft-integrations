@@ -19,7 +19,7 @@ async function generateThumbnail(title) {
   const { nr, text } = parseTitle(title);
   const tagText = nr > -1 ? `#${nr}` : `#spezial`;
   const subText = nr === -1 || !text ? title : text;
-  const image = await loadImage("img/video.png");
+  const image = await loadImage("img/video.bmp");
   const maxTextWidth = image.width - 2 * 250;
   const canvas = createCanvas(image.width, image.height);
   const ctx = canvas.getContext("2d");
