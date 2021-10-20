@@ -1,4 +1,4 @@
-const { createCanvas, loadImage } = require("canvas");
+const { createCanvas, loadImage, registerFont } = require("canvas");
 const path = require("path");
 
 /** @typedef { import('@vercel/node').VercelResponse VercelResponse */
