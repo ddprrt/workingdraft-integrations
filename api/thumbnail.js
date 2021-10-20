@@ -38,6 +38,7 @@ async function generateThumbnail(title) {
   ctx.lineWidth = 40;
   ctx.strokeText(subText, 250, canvas.height - 150, maxTextWidth);
   ctx.fillText(subText, 250, canvas.height - 150, maxTextWidth);
+  ctx.scale(0.25, 0.25);
   return canvas.toBuffer("image/jpeg");
 }
 
