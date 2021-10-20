@@ -35,7 +35,7 @@ async function generateThumbnail(title) {
   ctx.lineWidth = 40;
   ctx.strokeText(subText, 250, canvas.height - 150, maxTextWidth);
   ctx.fillText(subText, 250, canvas.height - 150, maxTextWidth);
-  return canvas.toBuffer("image/png");
+  return canvas.toBuffer("image/jpg");
 }
 
 /**
@@ -46,7 +46,7 @@ async function generateThumbnail(title) {
 function handler(req, res) {
   const title = req.query.title || "Revision 000: Test und Test";
   generateThumbnail(title).then((result) => {
-    res.setHeader("Content-Type", "image/png");
+    res.setHeader("Content-Type", "image/jpg");
     res.send(result);
   });
 }
