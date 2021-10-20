@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "vercel-build": "yum install wget && wget https://github.com/jwerre/node-canvas-lambda/raw/master/canvas-lib64-layer.zip &&  unzip -j -d canvas_lib64 canvas-lib64-layer.zip && cp canvas_lib64/*so.1 node_modules/canvas/build/Release/"
+    "vercel-build": "yum install wget && wget https://github.com/jwerre/node-canvas-lambda/raw/master/node12_canvas_lib64_layer.zip &&  unzip -j -d canvas_lib64 canvas-lib64-layer.zip && cp canvas_lib64/*so.1 node_modules/canvas/build/Release/"
   },
   "keywords": [],
   "author": "",
