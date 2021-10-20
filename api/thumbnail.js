@@ -20,6 +20,8 @@ async function generateThumbnail(title) {
   const { nr, text } = parseTitle(title);
   const tagText = nr > -1 ? `#${nr}` : `#spezial`;
   const subText = nr === -1 || !text ? title : text;
+  const font = path.resolve("./public/SourceSansPro-Bold.ttf");
+  registerFont(font, { family: "Source Sans Pro" });
   const image = await loadImage(path.resolve("./public/img/video.png"));
   const maxTextWidth = image.width - 2 * 250;
   const canvas = createCanvas(image.width, image.height);
