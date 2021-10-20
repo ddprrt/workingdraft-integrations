@@ -66,6 +66,7 @@ function handler(req, res) {
   const factor = req.query.scale || 1;
   generateThumbnail(title, parseFloat(factor)).then((result) => {
     res.setHeader("Content-Type", "image/jpeg");
+    res.setHeader("Cache-Control", "max-age=5184000, immutable");
     res.send(result);
   });
 }
