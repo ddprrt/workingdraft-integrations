@@ -15,7 +15,7 @@ function parseTitle(title) {
   return { nr: match[1], text: match[2] };
 }
 
-async function generateThumbnail(title) {
+async function generateThumbnail(title, scaleFactor = 1) {
   console.log(`Rendering thumbnail...`);
   const { nr, text } = parseTitle(title);
   const tagText = nr > -1 ? `#${nr}` : `#spezial`;
@@ -38,8 +38,22 @@ async function generateThumbnail(title) {
   ctx.lineWidth = 40;
   ctx.strokeText(subText, 250, canvas.height - 150, maxTextWidth);
   ctx.fillText(subText, 250, canvas.height - 150, maxTextWidth);
-  ctx.scale(0.25, 0.25);
-  return canvas.toBuffer("image/jpeg");
+
+  const scale = createCanvas(
+    image.width * scaleFactor,
+    image.height * scaleFactor
+  );
+  const scaleContext = scale.getContext("2d");
+
+  scaleContext.drawImage(
+    canvas,
+    0,
+    0,
+    image.width * scaleFactor,
+    image.height * scaleFactor
+  );
+
+  return scale.toBuffer("image/jpeg");
 }
 
 /**
@@ -49,7 +63,8 @@ async function generateThumbnail(title) {
  */
 function handler(req, res) {
   const title = req.query.title || "Revision 000: Test und Test";
-  generateThumbnail(title).then((result) => {
+  const factor = req.query.scale || 1;
+  generateThumbnail(title, parseFloat(factor)).then((result) => {
     res.setHeader("Content-Type", "image/jpeg");
     res.send(result);
   });
