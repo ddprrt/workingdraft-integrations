@@ -1,3 +1,5 @@
+console.log(process.env)
+
 const { createCanvas, loadImage, registerFont } = require("canvas");
 const path = require("path");
 
