@@ -1,4 +1,3 @@
-console.log(process.env)
 
 if (process.env.LD_LIBRARY_PATH == null ||
   !process.env.LD_LIBRARY_PATH.includes(
@@ -7,6 +6,9 @@ if (process.env.LD_LIBRARY_PATH == null ||
 ) {
   process.env.LD_LIBRARY_PATH = `${process.env.PWD}/node_modules/canvas/build/Release:${process.env.LD_LIBRARY_PATH || ''}`;
 }
+
+console.log(process.env)
+
 
 const { createCanvas, loadImage, registerFont } = require("canvas");
 const path = require("path");
