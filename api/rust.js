@@ -78,6 +78,13 @@ function normalize(hours) {
   }
 }
 
+function leading(min) {
+  if (min < 10) {
+    return `0${min}`
+  }
+  return min
+}
+
 /**
  *
  * @param {VercelRequest} req
@@ -88,7 +95,7 @@ function handler(req, res) {
   const [hours, ampm] = normalize(date.getHours());
   const title = `${dates[date.getDay()]}, ${
     months[date.getMonth()]
-  } ${date.getDate()} - ${hours}:${date.getMinutes()}${ampm} CET`;
+  } ${date.getDate()} - ${hours}:${leading(date.getMinutes())}${ampm} CET`;
   const factor = req.query.scale || 1;
   generateThumbnail(title, parseFloat(factor)).then((result) => {
     res.setHeader("Content-Type", "image/jpeg");
